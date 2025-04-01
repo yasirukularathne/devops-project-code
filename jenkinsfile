@@ -11,17 +11,7 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 retry(3) {
-                    git branch: 'master', url: 'https://github.com/Govindu-Thejana/Dev_Ops.git'
-                }
-            }
-        }
-        
-        stage('Build Backend Docker Image') {
-            steps {
-                dir('backend') {
-                    script {
-                        bat "docker build -t ${BACKEND_IMAGE}:${BUILD_NUMBER} ."
-                    }
+                    git branch: 'main', url: 'https://github.com/yasirukularathne/devops-project-code.git'
                 }
             }
         }
@@ -31,6 +21,16 @@ pipeline {
                 dir('frontend') {
                     script {
                         bat "docker build -t ${FRONTEND_IMAGE}:${BUILD_NUMBER} ."
+                    }
+                }
+            }
+        }
+        
+        stage('Build Backend Docker Image') {
+            steps {
+                dir('backend') {
+                    script {
+                        bat "docker build -t ${BACKEND_IMAGE}:${BUILD_NUMBER} ."
                     }
                 }
             }
@@ -46,18 +46,18 @@ pipeline {
             }
         }
         
-        stage('Push Backend Image to Docker Hub') {
-            steps {
-                script {
-                    bat "docker push ${BACKEND_IMAGE}:${BUILD_NUMBER}"
-                }
-            }
-        }
-
         stage('Push Frontend Image to Docker Hub') {
             steps {
                 script {
                     bat "docker push ${FRONTEND_IMAGE}:${BUILD_NUMBER}"
+                }
+            }
+        }
+        
+        stage('Push Backend Image to Docker Hub') {
+            steps {
+                script {
+                    bat "docker push ${BACKEND_IMAGE}:${BUILD_NUMBER}"
                 }
             }
         }
