@@ -11,7 +11,7 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 retry(3) {
-                    git branch: 'master', url: 'https://github.com/Govindu-Thejana/Dev_Ops.git'
+                    git branch: 'main', url: 'https://github.com/yasirukularathne/devops-project-code.git'
                 }
             }
         }
