@@ -55,7 +55,7 @@ const Home = () => {
 
   return (
     <div>
-      <header className="bg-green-500 text-white py-6">
+      <header className="bg-red-500 text-white py-6">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl font-bold">Welcome to Our Fruit Store!</h1>
           <p className="mt-2 text-lg">
